@@ -1,0 +1,80 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+/* Layers */
+.layer {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.layer.hidden {
+  display: none;
+}
+
+#controls {
+  --padding: 20px;
+  padding: var(--padding);
+  width: calc(100% - calc(2 * var(--padding)));
+  height: calc(100% - calc(2 * var(--padding)));
+  background-color: white;
+  overflow: scroll;
+}
+
+#toggle {
+  --color: black;
+  color: var(--color);
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#toggle.black {
+  color: black;
+}
+
+#controls > div {
+  margin: auto;
+  max-width: 600px;
+  height: 100%;
+}
+
+#controls .row {
+  display: flex;
+  border-bottom: 1px solid rgb(240, 240, 240);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#controls .row > div {
+  width: 50%;
+}
+
+#controls .row > div:nth-child(2) {
+  text-align: right;
+}
+
+#welcome {
+  justify-content: center;
+  align-items: center;
+}
