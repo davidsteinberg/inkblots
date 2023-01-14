@@ -1,12 +1,10 @@
-const { clientWidth, clientHeight } = document.body;
-
 const settings = {
   backgroundColor: "#ffffff",
   lineColor: "#000000",
 
-  lineCount: Math.floor((clientWidth * clientHeight) / 4),
-  lineWidth: 1,
-  maxLineLength: 1,
+  lineCount: 1000,
+  lineWidth: 20,
+  maxLineLength: 10,
   allowDifferentLineLengths: true,
 
   allowDiagonals: "yes",

@@ -2,13 +2,12 @@
 // deno-lint-ignore-file
 // This code was bundled using `deno bundle` and it's not recommended to edit it manually
 
-const { clientWidth , clientHeight  } = document.body;
 const settings = {
     backgroundColor: "#ffffff",
     lineColor: "#000000",
-    lineCount: Math.floor(clientWidth * clientHeight / 4),
-    lineWidth: 1,
-    maxLineLength: 1,
+    lineCount: 1000,
+    lineWidth: 20,
+    maxLineLength: 10,
     allowDifferentLineLengths: true,
     allowDiagonals: "yes",
     beginInCenter: true,
@@ -126,10 +125,9 @@ const sections = [
     }, 
 ];
 const injectSettingsUI = (parent)=>{
-    const br = ()=>document.createElement("br")
-    ;
+    const br = ()=>document.createElement("br");
     const sectionUIs = sections.map((section)=>{
-        const div2 = document.createElement("div");
+        const div = document.createElement("div");
         const h1 = document.createElement("h1");
         const rowUIs = section.rows.map((row)=>{
             const { key , name , description , value  } = row;
@@ -148,21 +146,19 @@ const injectSettingsUI = (parent)=>{
                 const selectedOption = settings[key];
                 const select = document.createElement("select");
                 const options = value.options.map((option)=>{
-                    const ui1 = document.createElement("option");
+                    const ui = document.createElement("option");
                     const data = option.toLowerCase();
-                    ui1.textContent = option;
-                    ui1.setAttribute("value", data);
+                    ui.textContent = option;
+                    ui.setAttribute("value", data);
                     if (selectedOption === data) {
-                        ui1.setAttribute("selected", "selected");
+                        ui.setAttribute("selected", "selected");
                     }
-                    return ui1;
+                    return ui;
                 });
                 select.onchange = ()=>{
                     const [selectedValue] = [
                         ...select.options
-                    ].filter((option)=>option.selected
-                    ).map((option)=>option.value
-                    );
+                    ].filter((option)=>option.selected).map((option)=>option.value);
                     set(key, selectedValue);
                 };
                 select.append(...options);
@@ -204,14 +200,14 @@ const injectSettingsUI = (parent)=>{
             return div;
         });
         h1.textContent = section.name;
-        div2.append(h1, br(), ...rowUIs, br(), br());
-        return div2;
+        div.append(h1, br(), ...rowUIs, br(), br());
+        return div;
     });
-    const div1 = document.createElement("div");
-    const p1 = document.createElement("p");
-    p1.innerHTML = "Source code available on <a href='https://github.com/davidsteinberg/yourschach'>GitHub</a>.";
-    div1.append(...sectionUIs, p1, br(), br());
-    parent.append(div1);
+    const div = document.createElement("div");
+    const p = document.createElement("p");
+    p.innerHTML = "Source code available on <a href='https://github.com/davidsteinberg/yourschach'>GitHub</a>.";
+    div.append(...sectionUIs, p, br(), br());
+    parent.append(div);
 };
 const coin = ()=>{
     return Math.random() < 0.5;
@@ -359,10 +355,10 @@ const addLine = (context, coordinateData)=>{
     };
 };
 const draw = (canvas, willDraw)=>{
-    const { clientWidth: clientWidth1 , clientHeight: clientHeight1  } = document.body;
+    const { clientWidth , clientHeight  } = document.body;
     const dimensions = {
-        width: clientWidth1,
-        height: clientHeight1
+        width: clientWidth,
+        height: clientHeight
     };
     const coordinateData = buildCoordinateData(dimensions);
     const context = canvas.getContext("2d");
@@ -373,15 +369,13 @@ const draw = (canvas, willDraw)=>{
         for(let i = 0; i < lineCount; i += 1){
             coordinateData.last = addLine(context, coordinateData);
         }
-        window.onpointerup = ()=>draw(canvas, willDraw)
-        ;
+        window.onpointerup = ()=>draw(canvas, willDraw);
         return;
     }
     let remainingLines = settings.lineCount;
     const onpointerup = ()=>{
         remainingLines = 0;
-        window.onpointerup = ()=>draw(canvas, willDraw)
-        ;
+        window.onpointerup = ()=>draw(canvas, willDraw);
     };
     const step = ()=>{
         remainingLines -= 1;
