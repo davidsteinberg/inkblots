@@ -205,7 +205,7 @@ const injectSettingsUI = (parent)=>{
     });
     const div = document.createElement("div");
     const p = document.createElement("p");
-    p.innerHTML = "Source code available on <a href='https://github.com/davidsteinberg/yourschach'>GitHub</a>.";
+    p.innerHTML = "Source code available on <a href='https://github.com/davidsteinberg/inkblots'>GitHub</a>.";
     div.append(...sectionUIs, p, br(), br());
     parent.append(div);
 };

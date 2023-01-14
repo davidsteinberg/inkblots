@@ -1,6 +1,6 @@
-# Yourschach
+# Inkblots
 
-Yourschach is a site that generates random "inkblots" based on customizable
+Inkblots is a site that generates random "inkblots" based on customizable
 settings.
 
 By default, a high number of thin/short lines are used, causing clustered lines
