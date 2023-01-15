@@ -11,6 +11,8 @@ const ui = {
   toggle: document.querySelector("#toggle")! as HTMLElement,
 };
 
+draw(ui.canvas, () => {});
+
 // Set colors before each draw
 const setColors = () => {
   ui.toggle.style.setProperty("--color", settings.lineColor);

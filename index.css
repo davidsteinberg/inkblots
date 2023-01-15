@@ -75,7 +75,18 @@ body {
   text-align: right;
 }
 
-#welcome {
-  justify-content: center;
-  align-items: center;
+/* Welcome */
+#welcome-container {
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+  max-width: 550px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+#welcome-container > p {
+  text-align: right;
 }

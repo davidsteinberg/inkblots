@@ -398,6 +398,7 @@ const ui = {
     controls: document.querySelector("#controls"),
     toggle: document.querySelector("#toggle")
 };
+draw(ui.canvas, ()=>{});
 const setColors = ()=>{
     ui.toggle.style.setProperty("--color", settings.lineColor);
     ui.theme.setAttribute("content", settings.backgroundColor);
